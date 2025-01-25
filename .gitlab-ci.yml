@@ -12,16 +12,16 @@ stages:
 
 trigger_a:
   stage: ansible-check-a
-  trigger:
-    include: roles/a/.gitlab-ci.yml
   rules:
     - changes:
         - roles/a/**/*
+  script:
+    - ansible-playbook --check -i inventory.yml playbook-a.yml
 
 trigger_b:
   stage: ansible-check-b
-  trigger:
-    include: roles/b/.gitlab-ci.yml
   rules:
     - changes:
         - roles/b/**/*
+  script:
+    - ansible-playbook --check -i inventory.yml playbook-b.yml
