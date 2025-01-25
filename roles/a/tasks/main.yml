@@ -1,4 +1,4 @@
 ---
 - name: Execute Role A
   ansible.builtin.debug:
-    msg: "Executing Role A"
+    msg: "Executing Role A -- checking"
