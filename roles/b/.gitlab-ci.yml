@@ -6,7 +6,6 @@ default:
 
 test_b:
   stage: test
-  needs: [build_b]
   tags:
     - ansible
   script:
