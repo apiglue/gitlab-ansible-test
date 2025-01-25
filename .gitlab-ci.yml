@@ -7,11 +7,11 @@ default:
     - ansible
 
 stages:
-  - ansible-check-a
-  - ansible-check-b
+  - test-a
+  - test-b
 
 trigger_a:
-  stage: ansible-check-a
+  stage: test-a
   rules:
     - changes:
         - roles/a/**/*
@@ -19,7 +19,7 @@ trigger_a:
     - ansible-playbook --check -i inventory.yml playbook-a.yml
 
 trigger_b:
-  stage: ansible-check-b
+  stage: test-b
   rules:
     - changes:
         - roles/b/**/*
