@@ -7,25 +7,21 @@ default:
     - ansible
 
 stages:
-  - ansible-check-a
-  - ansible-check-b
+  - test-a
+  - test-b
 
 trigger_a:
-  stage: ansible-check-a
-  trigger:
-    include:
-      - local: roles/a/.gitlab-ci.yml
-      - local: ./playbook-a.yml
+  stage: test-a
   rules:
     - changes:
         - roles/a/**/*
+  script:
+    - ansible-playbook --check -i inventory.yml playbook-a.yml
 
 trigger_b:
-  stage: ansible-check-b
-  trigger:
-    include:
-      - local: roles/b/.gitlab-ci.yml
-      - local: ./playbook-b.yml
+  stage: test-b
   rules:
     - changes:
         - roles/b/**/*
+  script:
+    - ansible-playbook --check -i inventory.yml playbook-b.yml
