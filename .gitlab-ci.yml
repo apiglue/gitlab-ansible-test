@@ -25,19 +25,3 @@ trigger_b:
   rules:
     - changes:
         - roles/b/*
-
-ansible-check-a:
-  stage: ansible-check-a
-  tags:
-    - ansible
-  script:
-    - ansible-playbook --check -i inventory.yml playbook-a.yml
-  cache: []
-
-ansible-check-b:
-  stage: ansible-check-b
-  tags:
-    - ansible
-  script:
-    - ansible-playbook --check -i inventory.yml playbook-b.yml
-  cache: []
