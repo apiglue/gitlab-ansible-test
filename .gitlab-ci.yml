@@ -16,7 +16,7 @@ trigger_a:
     include: roles/a/.gitlab-ci.yml
   rules:
     - changes:
-        - roles/a/*
+        - roles/a/**/*
 
 trigger_b:
   stage: ansible-check-b
@@ -24,4 +24,4 @@ trigger_b:
     include: roles/b/.gitlab-ci.yml
   rules:
     - changes:
-        - roles/b/*
+        - roles/b/**/*
