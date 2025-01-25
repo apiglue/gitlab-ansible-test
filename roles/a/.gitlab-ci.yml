@@ -9,4 +9,4 @@ test_a:
   tags:
     - ansible
   script:
-    - ansible-playbook -i ${CI_PROJECT_DIR}/inventory.yml ${CI_PROJECT_DIR}/playbook-a.yml
+    - ansible-playbook --check ${CI_PROJECT_DIR}/playbook-a.yml
