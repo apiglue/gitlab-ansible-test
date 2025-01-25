@@ -9,4 +9,4 @@ test_a:
   tags:
     - ansible
   script:
-    - ansible-playbook --check -i ../../inventory.yml ../../playbook-a.yml
+    - ansible-playbook --check -i inventory.yml playbook-a.yml
