@@ -1,6 +1,14 @@
 stages:
   - triggers
 
+trigger_root:
+  stage: triggers
+  trigger:
+    include: .gitlab-ci.yml
+  rules:
+    - changes:
+        - /*
+
 trigger_a:
   stage: triggers
   trigger:
