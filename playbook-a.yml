@@ -1,0 +1,7 @@
+- name: Playbook A
+  gather_facts: false
+  hosts: all
+  tasks:
+    - name: Execute Role A
+      ansible.builtin.include_role:
+        name: a

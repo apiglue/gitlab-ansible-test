@@ -1,16 +1,17 @@
-stages:
-  - triggers
+default:
+  image:
+    name: alpine/ansible
+    entrypoint: [""]
+  timeout: 15 minutes
+  tags:
+    - ansible
 
-trigger_root:
-  stage: triggers
-  trigger:
-    include: .gitlab-ci.yml
-  rules:
-    - changes:
-        - /*
+stages:
+  - ansible-check-a
+  - ansible-check-b
 
 trigger_a:
-  stage: triggers
+  stage: ansible-check-a
   trigger:
     include: a/.gitlab-ci.yml
   rules:
@@ -18,9 +19,25 @@ trigger_a:
         - a/*
 
 trigger_b:
-  stage: triggers
+  stage: ansible-check-b
   trigger:
     include: b/.gitlab-ci.yml
   rules:
     - changes:
         - b/*
+
+ansible-check-a:
+  stage: ansible-check-a
+  tags:
+    - ansible
+  script:
+    - ansible-playbook --check -i inventory.yml playbook-a.yml
+  cache: []
+
+ansible-check-b:
+  stage: ansible-check-b
+  tags:
+    - ansible
+  script:
+    - ansible-playbook --check -i inventory.yml playbook-b.yml
+  cache: []
